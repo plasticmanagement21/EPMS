@@ -1,0 +1,150 @@
+{% extends 'base_home.html' %}
+{% load static %}
+{% block content %}
+
+		<div class="row">
+			<div class="col-2">
+				<form action="{% url 'search' %}" method="GET">
+				<div class="search">
+					<input type="submit" value="&#128269">
+					<input type="text" name="keyword" placeholder="Search products here" required>
+				</div>
+				</form>
+				<br>
+				<h1>E-Plastic Management System</h1>
+				<p>Be part of the solution not the problem.</p>
+				<a href="{% url 'aboutus' %}" class="btn">Explore now&#8594;</a>
+			</div>
+			<div class="col-2">
+				<img src="{% static 'image/plastic.png' %}">
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!------------------------------------------------------------>
+<br>
+<marquee style="color:green; font-weight: bold; font-size:20px;">Earn something from nothing 
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	&nbsp;&nbsp; If you save nature, nature will save you&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Plastic, plastic every where is there a kind person to reduce it.</marquee>
+
+<div class="categories">
+	<div class="small-container">
+	<div class="row">
+		<div class="col-3">
+			<img src="{% static 'image/categories-1.jpg' %}">
+		</div>
+		<div class="col-3">
+			<img src="{% static 'image/categories-2.jpg' %}">
+		</div>
+		<div class="col-3">
+			<img src="{% static 'image/categories-3.jpg' %}">
+		</div>
+	</div>
+	</div>
+</div>
+
+
+<!------------------------------------------------------------>
+
+
+<!--<div class="small-container">
+	<h2 class="title">Featured Products</h2>
+	<div class="row">
+		{% for product in product_number %}
+		<div class="col-4">
+			<a href="{% url 'product:productdetails' %}"><img src="/media/{{product.productimage}}" height="315px"></a>
+			<h4>{{product.productname}}</h4>
+			<div class="rating">
+				<i class="fa fa-star"></i>
+				<i class="fa fa-star"></i>
+				<i class="fa fa-star"></i>
+				<i class="fa fa-star-half-o"></i>
+				<i class="fa fa-star-o"></i>
+			</div>
+			<p>₹{{product.productprice}}</p>
+		</div>
+		{% endfor %}		
+	</div>-->
+<!-------------------------------------------------------------------------------------------------------------------------->
+
+	<h2 class="title">Latest Products</h2>
+	<div class="row">
+		{% for object in objects %}
+		<div class="col-4">
+			<a href="{% url 'product:productdetails' object.id %}"><img src="/media/{{object.productimage}}"></a>
+			<h4>{{object.productname}}</h4>
+			{% if object.productquantity == 0 %}
+			<p style="color: red;">Outofstock</p>
+			{% else %}
+			<p>Only {{object.productquantity}} left<p>
+			{% endif %}
+			<p>₹{{object.productprice}}</p>
+		</div>
+		{% endfor %}	
+	</div>
+</div>
+<div class="more">
+	<a href="{% url 'product:products' %}">View More
+		<!--<i class="fa fa-sort-down"></i>-->
+	</a>
+</div>
+
+<!----------------------------------------------------------------->
+
+
+<div class="hugeplastic">
+	<div class="small-container">
+		<div class="row">
+			{% for object in objects|slice:":1" %}
+			{% if object.hugeproduct == True %}
+			<div class="col-2">
+			<img src="/media/{{object.productimage}}" class="largerquantity" style="height: 500px; width: 450px;">
+			</div>
+			<div class="col-2">
+				<p>Available on E-plastic Management System</p>
+				<h1>{{object.productname}} in Quantity</h1>
+				<small>{{object.productdescription}}</small><br>
+				<a href="{% url 'product:productdetails' object.id %}"class="btn">Buy Now&#8594;</a>
+			</div>
+			{% endif %}
+			{% endfor %}
+		</div>
+	</div>
+</div>
+
+
+<!--------------------------------------------------------------------->
+
+
+<div class="companies">
+	<div class="row">
+		<div class="col-5">
+			<a href="https://saahas.org/"><img src="{% static 'image/saahas.png' %}"></a>
+		</div>
+		<div class="col-5">
+			<a href="http://www.sswml.com/"><img src="{% static 'image/sswml.png' %}"></a>
+		</div>
+		<div class="col-5">
+			<a href="http://towmcl.com/"><img src="{% static 'image/towmc.jpg' %}"></a>
+		</div>
+		<div class="col-5">
+			<a href="https://www.vermigold.com/"><img src="{% static 'image/vermigoldecotechlogo.jpg' %}"></a>
+		</div>
+		<div class="col-5">
+			<a href="https://www.ecowise.net.in/"><img src="{% static 'image/ecowise.jpg' %}"></a>
+		</div>
+	</div>
+</div>
+
+
+<!------------------------------------------------------------------->
+
+{% endblock %}

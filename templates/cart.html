@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+{% for message in messages %}
+		<div style="color:red; text-align: center;">{{message}}</div>
+	{% endfor %}
+<div class="small-container cart-page">
+	
+	{% if item_in_carts != 0 %}
+	<table class="cart">
+		<tr>
+			<th>Product</th>
+			<th>Quantity</th>
+			<th>Subtotal</th>
+		</tr>
+		
+		{% for object in carts %}
+		<tr>
+			<td>
+				<div class="cart-info"><img src="/media/{{object.product.productimage}}">
+					<div>
+						<p>{{object.product.productname}}</p>
+						<small>₹{{object.product.productprice}}</small>
+						<br>
+						<a href="{% url 'cart:remove_from_cart' object.product.id %}">Remove</a>
+					</div>
+				</div>
+			</td>
+			<td>
+				<a href="{% url 'cart:update_cart' object.product.id %}?action=decrease" class="btn" style="border-radius: 2px; padding: 6px 15px 6px 15px; color:white;">-</a>
+				<input type="text" name="quantity" value="{{object.productquantity}}" min="1" max="{{object.product.productquantity}}" style="text-align: center;">
+				<a href="{% url 'cart:update_cart' object.product.id %}?action=increase" class="btn" style="border-radius: 2px; padding: 6px 15px 6px 15px; color:white;">+</a>
+			</td>
+				
+			<td>₹{{object.total_price}}</td>
+		</tr>
+		{% endfor %}
+	</table>
+	<div class="total-price">
+		<table class="cart">
+			<!-- <tr>
+				<td>Subtotal</td>
+				<td>₹640.00</td>
+			</tr>
+			<tr>
+				<td>Tax</td>
+				<td>₹00.00</td>
+			</tr> -->
+			<tr>
+				<td>Total</td>
+				<td>₹{{net_total_price}}</td>
+			</tr>
+		</table>
+	</div>
+	
+	<div class="placeorder">
+		<a href="{% url 'payments:pay' %}" class="btn">Place Order</a>
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	{% else %}
+	<div style="text-align: center; ">
+	<p> Your cart is empty.</p>
+	<a href="{% url 'product:products' %}" class="btn" style="border-radius: 2px; padding: 6px 15px 6px 15px; color:white;">Shop Now</a>
+	</div>
+	{% endif %}
+</div>
+
+{% endblock %}
+
+
+
+
+

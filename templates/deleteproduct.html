@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="deliverydetail-container">
+	<div id="delivery-header">
+			<h2>Delete Product</h2>
+		<hr id="addproduct-indicator" style="width:170px;"/>
+	</div>
+	<div class="delform-container">
+		<form method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
+			<input type="hidden" name="user" value="{{object.user}}">
+			<label for="productname">Product Name:</label>
+			<input type="text" name="productname" placeholder="Product name" value="{{object.productname}}" readonly/><br><br>
+			<label for="productimage">Product Image:</label><br><br>
+            <img src="/media/{{object.productimage}}" width="150px;"><br><br>
+			<label for="productprice">Price:</label>
+			<input type="text" name="productprice" placeholder="Price" value="{{object.productprice}}" readonly/><br><br>
+			<label for="productdescription">Product Description:</label>
+			<input type="text" name="productdescription" placeholder="Description" value="{{object.productdescription}}" readonly/><br><br>
+			<input type="submit" class="add" value="Delete"/>
+		</form>
+	</div>
+	
+</div>
+
+
+{% endblock %}

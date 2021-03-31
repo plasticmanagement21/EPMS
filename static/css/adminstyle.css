@@ -1,0 +1,45 @@
+#header {
+    background: rgb(0, 62, 69);
+    color: #C2FADC;
+
+}
+
+#branding h1 a:link, #branding h1 a:visited {
+    color: #C2FADC;
+    font-weight: bold;
+}
+
+#header a:link, #header a:visited {
+    color: #C2FADC;
+}
+
+.module h2, .module caption, .inline-group h2 {
+    background: rgb(0, 62, 69);
+    color: #C2FADC;
+}
+
+
+div.breadcrumbs {
+    background: rgb(61, 88, 106);
+}
+
+#nav-sidebar .current-app .section:link, #nav-sidebar .current-app .section:visited {
+    color: #C2FADC;
+    font-weight: normal;
+}
+
+.login #header h1 {
+    font-size: 18px;
+    color: #C2FADC;
+    font-weight: bold;
+}
+
+.login .form-row label {
+    font-weight: bold;
+}
+
+.button, input[type=submit], input[type=button], .submit-row input, a.button {
+    background: rgb(61, 88, 106);
+    color: #C2FADC;
+
+}

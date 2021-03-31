@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="small-container single-product" style="margin-bottom: 100px;">
+	<div class="row">
+		<div class="col-2">
+			<img src="/media/{{object.productimage}}" width="100%">
+		</div>
+		<div class="col-2">
+			<p>Home/{{object.productname}}</p>
+			<h1>{{object.productname}}</h1>
+			<h4>₹{{object.productprice}}</h4>
+			{% if user.is_authenticated %}
+			{% ifequal object.user|stringformat:"s" request.user.username %}
+				<a href="{% url 'product:updateproduct' object.id %}" class="btn">Update</a>
+				<a href="{% url 'product:deleteproduct' object.id %}" class="btn">Delete</a>
+			{% else %}
+			{% if object.quantity == 0 %}
+			<p style="color: red;">Outofstock</p>
+			{% else %}
+				<!-- <input type="number" min="1" max="{{object.productquantity}}" value="1"> -->
+				<a href="{% url 'cart:add_to_cart' object.id %}" class="btn"> Add to Cart</a>
+			{% endif %}
+			{% endifequal %}
+			{% else %}
+				<a href="{% url 'account:login' %}" class="btn"> Add to Cart</a>
+			<!--<a href="{% url 'account:login' %}"><input type="submit" class="btn" value="Update"/></a>-->
+			{% endif %}
+			<h3>Product details <i class="fa fa-indent"></i></h3>
+			<br>
+			<p>{{object.productdescription}}</p><br>
+			<h3>Product Address <i class="fa fa-map-marker" aria-hidden="true"></i></h3>
+			<br>
+			<p>{{object.productaddress}}</p><br>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

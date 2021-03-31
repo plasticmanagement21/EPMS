@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="small-container">
+	<div class='row row-2'>
+		<h2>All Products</h2>
+		
+		<form action="{% url 'search' %}" method="GET" style="width: 50%; margin: 0; justify-content:left;">
+			
+			<div class="search">
+				<input type="submit" value="&#128269" style="margin-right: 10px;">
+				<input type="text" name="keyword" placeholder="Search products here" required>
+			</div>
+
+			<select name="sorting" style="margin-top: 10px;">
+				<option value="default">Default</option>
+				<option value="lowprice">Sortby Price (Low to High)</option>
+				<option value="highprice">Sortby Price (High to Low)</option>
+			</select>
+
+		</form>
+		
+			
+	</div>
+	<div class="row">
+		{% for object in objects %}
+		<div class="col-4">
+			<a href="{% url 'product:productdetails' object.id %}"><img src="/media/{{object.productimage}}" style="height:300px;"></a>
+			<h4>{{object.productname}}</h4>
+			<p>Only {{object.productquantity}} left<p></p>
+			<p>₹{{object.productprice}}</p>
+		</div>
+		{% endfor %}
+	</div>
+	<div class="page-btn">
+		{% if is_paginated %}
+  			<ul>
+    			{% if page_obj.has_previous %}
+      				<li><a href="?page={{ page_obj.previous_page_number }}"><span>&laquo;</span></a></li>
+    			{% else %}
+      				<li><span>&laquo;</span></li>
+    			{% endif %}
+
+   				{% for i in paginator.page_range %}
+      				{% if page_obj.number == i %}
+        				<li><span class="page-active">{{ i }}</span></li>
+      				{% else %}
+        				<li><a href="?page={{ i }}"><span>{{ i }}</span></a></li>
+      				{% endif %}
+    			{% endfor %}
+
+    			{% if page_obj.has_next %}
+    				<li><a href="?page={{ page_obj.next_page_number }}"><span>&raquo;</span></a></li>
+    			{% else %}
+    				<li><span>&raquo;</span></li>
+    			{% endif %}
+			</ul>
+		{% endif %}
+	</div>
+</div>
+
+{% endblock %}

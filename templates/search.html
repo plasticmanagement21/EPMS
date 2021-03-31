@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="small-container">
+	<div class='row row-2'>
+		<h2>Search Results for "{{request.GET.keyword}}"</h2>
+		<!-- <form action="{% url 'search' %}" method="GET" style="width: 50%; margin: 0; justify-content:left;">
+			
+			<div class="search">
+				<input type="submit" value="&#128269" style="margin-right: 10px;">
+				<input type="text" name="keyword" placeholder="Search products here" required>
+			</div>
+
+			<select name="sorting" style="margin-top: 10px;">
+				<option value="default">Default</option>
+				<option value="price">Sortby Price</option>
+			</select>
+
+		</form> -->
+	</div>
+	<div class="row">
+		{% for result in results %}
+		<div class="col-4">
+			<a href="{% url 'product:productdetails' result.id %}"><img src="/media/{{result.productimage}}" style="height:300px;"></a>
+			<h4>{{result.productname}}</h4>
+			{% if result.productquantity == 0 %}
+			<p style="color: red;">Outofstock</p>
+			{% else %}
+			<p>Only {{result.productquantity}} left<p>
+			{% endif %}
+			<p>₹{{result.productprice}}</p>
+		</div>
+		{% endfor %}
+	</div>
+</div>
+
+{% endblock %}

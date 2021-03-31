@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="contactus">
+    {% for message in messages %}
+        <div style="color: blue; text-align: center;"><h3>{{message}}</h3></div>
+    {% endfor %}
+    <h1>Connect With Us </h1>
+    <p>We would love to respond to your queries and help you succeed.<br>
+        Feel free to get in touch with us.</p><br>
+        <div class="contact-box">
+            <div class="contact-left">
+                <h3>Send your request</h3>
+                <form action="{% url 'contactus' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label for="name">Name</label>
+                            <input type="text" placeholder="Your Name" name="name" id="name">
+                        </div>
+                        <div class="input-group">
+                            <label for="phone">Phone</label>
+                            <input type="text" placeholder="Mobile Number" name="mobilenumber" id="phone">
+                        </div>
+                    </div>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label for="email">Email</label>
+                            <input type="email" placeholder="Email Address" name="email" id="email">
+                        </div>
+                        <div class="input-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" placeholder="Subject" name="subject" id="subject">
+                        </div>
+                    </div>
+                    <label for="message">Message</label>
+                    <textarea name="message" id="message" rows="5"></textarea>
+                    <button value="submit" class="btn">Send</button>
+                </form>
+            </div>
+            <div class="contact-right">
+                <h3>Reach Us</h3>
+                <table class="contactus-table">
+                    <tr>
+                        <td><i class="fa fa-envelope" style="font-size:24px"></i></td>
+                        <td>plasticmanagement21@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td><i class="fa fa-phone" style="font-size:24px"></i></td>
+                        <td>+91 72030 69687</td>
+                    </tr>
+                    <tr>
+                        <td><i class="fa fa-map-marker" style="font-size:24px"></i></td>
+                        <td>70-A, Vasanji Park Society,<br>
+                            Opp. Kantareshwar Mahadev Temple, Katargam, <br>
+                            Surat-395004.
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+</div>
+
+
+
+
+
+{% endblock %}

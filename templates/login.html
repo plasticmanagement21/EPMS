@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="account-page">
+	<div class="container">
+		<div class="row">
+			<div class="col-2">
+				<img src="{% static 'image/plastic.png' %}" alt="" width="100%">
+			</div>
+			<div class="col-2">
+				<div class="form-container">
+					<div class="form-btn">
+						<span>Login</span>
+						<hr id="indicator">
+					</div>
+					<form action="{% url 'account:login' %}" method="POST" id="login-form">
+						{% csrf_token %}
+						<input type="text" placeholder="Username" name="username"/>
+						<input type="password" placeholder="Password" name="password"/>
+						{% for message in messages %}
+							<div style="color:red;">{{message}}</div>
+						{% endfor %}
+						<button type="submit" class="btn">Login</button>
+						
+						<a href="{% url 'account:password_reset' %}">Forgot Password /</a><a href="{% url 'account:register' %}"> Register</a>
+					</form>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+

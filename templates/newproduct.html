@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="deliverydetail-container">
+	<div id="delivery-header">
+		{% if form.instance.pk %}
+			<h2>Update Product</h2>
+		{% else %}
+			<h2>Add Product</h2>
+		{% endif %}
+		<hr id="addproduct-indicator"/>
+	</div>
+	<div class="delform-container">
+		<form method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
+			{% for message in messages %}
+				<div style="color:red;">{{message}}</div>
+			{% endfor %}
+
+			<label for="productname">Product Name:</label>
+			<input type="text" name="productname" id="productname" placeholder="Product name" value="{{object.productname}}"/><br><br>
+			<label for="productimage">Product Image:</label>
+			{{form.productimage}}
+			<!--<input type="text" name="productimage" placeholder="Image"/>--><br><br>
+			<label for="productprice">Price:</label>
+			<input type="text" name="productprice" id="productprice"  placeholder="Price" value="{{object.productprice}}"/><br><br>
+			<label for="productdescription">Product Description:</label>
+			<input type="text" name="productdescription" id="productdescription" placeholder="Description" value="{{object.productdescription}}"/><br><br>
+			<label for="productquantity">Product Quantity:</label>
+			<input type="number" name="productquantity" id="productquantity" placeholder="Product Quantity" value="{{object.productquantity}}"/><br><br>
+			<label for="productaddress">Product Address:</label>
+			<input type="text" name="productaddress" id="productaddress" placeholder="Product Address" value="{{object.productaddress}}"/><br><br>
+
+			<label for="hugeproduct" style="margin: 0px;">Huge Product</label>
+			<input type="checkbox" name="hugeproduct" id="hugeproduct" value="True" style="width: 3%; height: 15px; margin: 10px 0; padding: 0px; border: 1px solid #ccc;"/>
+			<br><br>
+
+			{% if form.instance.pk %}
+				<input type="submit" class="add" value="Update"/>
+			{% else %}
+				<input type="submit" class="add" value="ADD"/>
+			{% endif %}
+		</form>
+	</div>	
+</div>
+
+
+{% endblock %}
