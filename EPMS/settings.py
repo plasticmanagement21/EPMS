@@ -160,3 +160,13 @@ EMAIL_HOST_PASSWORD = 'project@123'
 EMAIL_USE_TLS = True
 
 #########################################################################################################
+
+
+PAYTM_MERCHANT_ID = 'bwPiYb61773656943019'
+PAYTM_SECRET_KEY = 'yTJupBwnpWc4q%F7'
+PAYTM_WEBSITE = 'WEBSTAGING'
+PAYTM_CHANNEL_ID = 'WEB'
+PAYTM_INDUSTRY_TYPE_ID = 'Retail'
+
+
+##########################################################################################################

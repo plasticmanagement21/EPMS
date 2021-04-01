@@ -1,24 +1,41 @@
+{% load static %}
 <!DOCTYPE html>
-
+<html lang="en">
 <head>
-    <title>Payment Home</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Otp Verification | E-Plastic Management System</title>
+	<link rel="stylesheet" href="{% static '/css/stylesheet.css' %}">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://code.jquery.com/jquery-3.5.1.min.js">
 </head>
-
+</head>
 <body>
-    <h2>Payment Home</h2>
-    {% if error %}
-    <h3>{{ error }}</h3>
-    {% endif %}
-    <form method="post">
-        {% csrf_token %}
-        <label for="username">Username: </label>
-        <input id="username" type="text" name="username" required>
-        <label id="password" for="password">Password: </label>
-        <input type="password" name="password" required>
-        <label id="amount" for="amount">Amount: </label>
-        <input type="number" name="amount" value="100">
-        <input type="submit" name="submit" value="Submit" required>
-    </form>
-</body>
+<div class="account-page">
+	<div class="container">
+		<div class="row">
+			<div class="col-2">
+				<div class="form-container" style="height: 500px;">
+					<div class="form-btn">
+						<span style="width:200px; cursor: default; margin:20px 0px 0px 0px;">Payment Home</span>
+					</div>
+					<form method="POST" id="login-form">
+						{% csrf_token %}
+                        {% if error %}
+                        <div style="color: red;">{{ error }}</div>
+                        {% endif %}
+						    <label for="username">Username: </label>
+                            <input id="username" type="text" name="username" required>
+                            <label id="password" for="password">Password: </label>
+                            <input type="password" name="password" required>
+                            <label id="amount" for="amount">Amount: </label>
+                            <input type="text" name="amount" value="{{amount}}" readonly>
+                            <input type="submit" name="submit" class="btn" value="Submit" required>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
-</html>

@@ -5,7 +5,7 @@
 		<div class="row">
 			<div class="col-2">
 				<form action="{% url 'search' %}" method="GET">
-				<div class="search">
+				<div class="search" style="margin-right: 38px;">
 					<input type="submit" value="&#128269">
 					<input type="text" name="keyword" placeholder="Search products here" required>
 				</div>
@@ -34,19 +34,15 @@
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Plastic, plastic every where is there a kind person to reduce it.</marquee>
-
+<h2 class="title">Advertisement</h2>
 <div class="categories">
 	<div class="small-container">
 	<div class="row">
-		<div class="col-3">
+		<marquee height="400px;" widht="400px;" scrolldelay=0 scrollamount=15 vspace=0 hspace=0>
 			<img src="{% static 'image/categories-1.jpg' %}">
-		</div>
-		<div class="col-3">
 			<img src="{% static 'image/categories-2.jpg' %}">
-		</div>
-		<div class="col-3">
 			<img src="{% static 'image/categories-3.jpg' %}">
-		</div>
+		</marquee>
 	</div>
 	</div>
 </div>

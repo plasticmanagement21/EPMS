@@ -4,21 +4,28 @@ from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 from .models import Transaction
 from .paytm import generate_checksum, verify_checksum
+from carts.models import Cart
 
 
 def initiate_payment(request):
     if request.method == "GET":
-        return render(request, 'payments/pay.html')
+        cart = Cart.objects.filter(user=request.user)
+        for obj in cart:
+            amount = obj.total_price
+            print(amount)
+
+        return render(request, 'payments/pay.html',{'amount':amount})
     try:
         username = request.POST['username']
         password = request.POST['password']
+        
         amount = int(request.POST['amount'])
         user = authenticate(request, username=username, password=password)
         if user is None:
             raise ValueError
         auth_login(request=request, user=user)
     except:
-        return render(request, 'payments/pay.html', context={'error': 'Wrong Accound Details or amount'})
+        return render(request, 'payments/pay.html', context={'error': 'Wrong Accound Details or amount','amount':amount})
 
     transaction = Transaction.objects.create(made_by=user, amount=amount)
     transaction.save()
